@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "primary" {
   resource_group_name = var.resource_group_name
 }
 
-resource "azurerm_subnet" "public_subnet" {
+resource "azurerm_subnet" "subnet" {
   name                 = var.subnet_primary_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = var.virtual_network_primary_name
@@ -24,15 +24,6 @@ resource "azurerm_subnet" "public_subnet" {
 
   enforce_private_link_endpoint_network_policies = true
 
-}
-
-resource "azurerm_subnet" "endpoint_subnet" {
-  name                 = "endpoint_subnet"
-  resource_group_name  = var.resource_group_name
-  virtual_network_name = var.virtual_network_primary_name
-  address_prefixes     = var.subnet_secondary_address_prefixes
-
-  enforce_private_link_endpoint_network_policies = true
 }
 
 # resource "azurerm_private_endpoint" "psql-funcapp" {
@@ -56,7 +47,7 @@ resource "azurerm_network_interface" "primary_nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.public_subnet.id
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.primary.id
   }
