@@ -1,12 +1,12 @@
 resource "azurerm_linux_virtual_machine" "primary" {
   name                = var.primary_linux_vm_name
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
+  resource_group_name = var.resource_group_name
+  location            = var.location
   size                = var.primary_linux_vm_size
   admin_username      = var.primary_linux_vm_adminuser
 
   network_interface_ids = [
-    azurerm_network_interface.primary_nic.id,
+    var.vm_nic_id,
   ]
 
   admin_ssh_key {

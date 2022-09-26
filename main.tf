@@ -61,8 +61,17 @@ module "PostgreSQL" {
   source              = "./PostgreSQL"
   base_name           = "${var.prefix}psql"
   location            = var.location
-  resource_group_name = module.ResourceGroups.rg_location_out
+  resource_group_name = module.ResourceGroups.rg_name_out
 
   psql_admin_login    = var.psql_admin_login
   psql_admin_password = var.psql_admin_password
+}
+
+module "VirtualMachines" {
+  source = "./VirtualMachines"
+
+  resource_group_name = module.ResourceGroups.rg_name_out
+  location = var.location
+  prefix = var.prefix
+  vm_nic_id = module.VirtualNetworks.vn_nic_id
 }
