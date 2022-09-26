@@ -1,7 +1,7 @@
 resource "azurerm_postgresql_server" "main-psql" {
-  name                = var.postgresql_server_primary_name
+  name                = var.base_name
   location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = var.resource_group_name
 
   administrator_login          = var.psql_admin_login
   administrator_login_password = var.psql_admin_password
@@ -20,9 +20,9 @@ resource "azurerm_postgresql_server" "main-psql" {
 }
 
 resource "azurerm_postgresql_database" "postgressql_db" {
-  name                = var.Postgresql_DB
-  resource_group_name = azurerm_resource_group.rg.name
-  server_name         = azurerm_postgresql_server.main-psql.name
+  name                = "${var.base_name}db"
+  resource_group_name = var.resource_group_name
+  server_name         = var.server_name
   charset             = "UTF8"
   collation           = "English_United States.1252"
 }

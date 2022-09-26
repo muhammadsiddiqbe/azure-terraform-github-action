@@ -50,9 +50,13 @@ module "VirtualNetworks" {
 
 module "StorageAccount" {
   source = "./StorageAccounts"
-  
-  base_name = "mypro"
+
+  base_name = "${var.project}storage"
   location = var.location
 
   resource_group_name = module.ResourceGroups.rg_name_out
+}
+
+module "PostgreSQL" {
+  source = "./PostgreSQL"
 }
