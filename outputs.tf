@@ -3,7 +3,7 @@ output "RgName" {
 }
 
 output "StgAccName" {
-  value = module.StorageAccount.stg_acc_name
+  value = module.StorageAccount.stg_acc_name_out
 }
 
 output "object_id" {
