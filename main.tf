@@ -29,34 +29,40 @@ output "object_id" {
 module "ResourceGroups" {
   source = "./ResourceGroups"
 
-  resource_group_name = "${var.project}MainRG"
+  resource_group_name     = "${var.project}MainRG"
   resource_group_location = "eastus"
-  environment = var.environment
+  environment             = var.environment
 }
 
 module "VirtualNetworks" {
-  source = "./VirtualNetworks"
-  location = var.location
+  source      = "./VirtualNetworks"
+  location    = var.location
   environment = var.environment
 
-  public_ip_primary_name = "${var.project}_primary_ip"
-  virtual_network_primary_name = "${var.project}_primary_vn"
-  subnet_primary_name = "${var.project}_primary_subnet"
-  resource_group_name = module.ResourceGroups.rg_name_out
-  resource_group_location = module.ResourceGroups.rg_location_out
+  public_ip_primary_name             = "${var.project}_primary_ip"
+  virtual_network_primary_name       = "${var.project}_primary_vn"
+  subnet_primary_name                = "${var.project}_primary_subnet"
+  resource_group_name                = module.ResourceGroups.rg_name_out
+  resource_group_location            = module.ResourceGroups.rg_location_out
   network_interface_primary_nic_name = "${var.project}_primary_nic"
-  my_terraform_nsg = "${var.project}_primary_nsg"
+  my_terraform_nsg                   = "${var.project}_primary_nsg"
 }
 
 module "StorageAccount" {
   source = "./StorageAccounts"
 
   base_name = "${var.project}storage"
-  location = var.location
+  location  = var.location
 
   resource_group_name = module.ResourceGroups.rg_name_out
 }
 
 module "PostgreSQL" {
-  source = "./PostgreSQL"
+  source              = "./PostgreSQL"
+  base_name           = "${var.project}psql"
+  location            = var.location
+  resource_group_name = module.ResourceGroups.rg_location_out
+
+  psql_admin_login    = var.psql_admin_login
+  psql_admin_password = var.psql_admin_password
 }

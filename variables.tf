@@ -15,3 +15,15 @@ variable "location" {
   type        = string
   description = "Azure region to deploy module to"
 }
+
+# POSTGRESQL
+
+variable "psql_admin_login" {
+  type      = string
+  sensitive = true
+}
+
+variable "psql_admin_password" {
+  type      = string
+  sensitive = true
+}
