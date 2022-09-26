@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "primary" {
   resource_group_name = var.resource_group_name
 }
 
-resource "azurerm_subnet" "subnet" {
+resource "azurerm_subnet" "public_subnet" {
   name                 = var.subnet_primary_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.primary.name
@@ -24,6 +24,15 @@ resource "azurerm_subnet" "subnet" {
 
   enforce_private_link_endpoint_network_policies = true
 
+}
+
+resource "azurerm_subnet" "endpoint_subnet" {
+  name                 = "endpoint_subnet"
+  resource_group_name  = azurerm_resource_group.example.name
+  virtual_network_name = azurerm_virtual_network.example.name
+  address_prefixes     = var.subnet_secondary_address_prefixes
+
+  enforce_private_link_endpoint_network_policies = true
 }
 
 # resource "azurerm_private_endpoint" "psql-funcapp" {
@@ -53,8 +62,8 @@ resource "azurerm_network_interface" "primary_nic" {
   }
 }
 
-resource "azurerm_network_security_group" "my_terraform_nsg" {
-  name                = var.my_terraform_nsg
+resource "azurerm_network_security_group" "primary_nsg" {
+  name                = var.primary_nsg
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -75,7 +84,7 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
   ]
 }
 
-resource "azurerm_network_interface_security_group_association" "primary_nisga" {
+resource "azurerm_network_interface_security_group_association" "primary" {
   network_interface_id      = azurerm_network_interface.primary_nic.id
-  network_security_group_id = azurerm_network_security_group.my_terraform_nsg.id
+  network_security_group_id = azurerm_network_security_group.primary_nsg.id
 }
