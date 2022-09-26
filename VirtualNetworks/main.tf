@@ -24,6 +24,10 @@ resource "azurerm_subnet" "subnet" {
 
   enforce_private_link_endpoint_network_policies = true
 
+  depends_on = [
+    azurerm_virtual_network.primary
+  ]
+
 }
 
 resource "azurerm_private_endpoint" "psql-funcapp" {
