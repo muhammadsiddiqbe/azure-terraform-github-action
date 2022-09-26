@@ -1,5 +1,5 @@
 output "RgName" {
-  value = module.ResourceGroup.rg_name_out
+  value = module.ResourceGroups.rg_name_out
 }
 
 output "StgAccName" {
