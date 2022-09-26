@@ -8,26 +8,26 @@ terraform {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
-  location = var.resource_group_location
+  name     = "rg-con-nest-env${var.environment}-${var.location}-01"
+  location = var.location
 
   tags = {
     Environment = var.environment
   }
 }
 
-resource "azurerm_resource_group" "secondary" {
-  name     = "secondary_rg"
-  location = var.resource_group_location
+resource "azurerm_resource_group" "service_bus" {
+  name     = "rg-servicebus-nest-${var.environment}-${var.location}-01"
+  location = var.location
 
   tags = {
     Environment = var.environment
   }
 }
 
-resource "azurerm_resource_group" "tertiary" {
-  name     = "secondary_rg"
-  location = var.resource_group_location
+resource "azurerm_resource_group" "rg_bastion" {
+  name     = "rg-aba-nest-${var.environment}-${var.location}-01"
+  location = var.location
 
   tags = {
     Environment = var.environment

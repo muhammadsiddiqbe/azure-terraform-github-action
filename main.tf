@@ -25,9 +25,8 @@ data "azuread_client_config" "current" {}
 module "ResourceGroups" {
   source = "./ResourceGroups"
 
-  resource_group_name     = "${var.prefix}MainRG"
-  resource_group_location = "eastus"
-  environment             = var.environment
+  location    = var.location
+  environment = var.environment
 }
 
 module "VirtualNetworks" {
