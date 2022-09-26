@@ -5,3 +5,19 @@ variable "prefix" {
 variable "location" {
   description = "The Azure Region in which all resources in this example should be created."
 }
+
+variable "resource_group_id" {
+  type = string
+}
+
+variable "queue_name" {
+  type = string
+}
+
+variable "storage_account_id" {
+  type = string
+}
+
+variable "storage_blob_container_name" {
+  type = string
+}

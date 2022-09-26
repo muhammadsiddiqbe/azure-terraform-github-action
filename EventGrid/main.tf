@@ -1,15 +1,15 @@
-resource "azurerm_eventgrid_event_subscription" "example" {
+resource "azurerm_eventgrid_event_subscription" "primary" {
   name  = "${var.prefix}-eventsubs"
-  scope = azurerm_resource_group.example.id
+  scope = var.resource_group_id
 
   storage_queue_endpoint {
-    storage_account_id = azurerm_storage_account.example.id
-    queue_name         = azurerm_storage_queue.example.name
+    storage_account_id = var.storage_account_id
+    queue_name         = var.queue_name
   }
 
   storage_blob_dead_letter_destination {
-    storage_account_id          = azurerm_storage_account.example.id
-    storage_blob_container_name = azurerm_storage_container.example.name
+    storage_account_id          = var.storage_account_id
+    storage_blob_container_name = var.storage_blob_container_name
   }
 
   retry_policy {

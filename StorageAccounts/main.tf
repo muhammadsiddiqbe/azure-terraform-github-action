@@ -41,22 +41,22 @@ resource "azurerm_storage_account" "secondary" {
   }
 }
 
-resource "azurerm_storage_queue" "storage_queue" {
+resource "azurerm_storage_queue" "primary" {
   name                 = "${random_string.random.result}queue"
   storage_account_name = azurerm_storage_account.primary.name
 }
 
-resource "azurerm_storage_container" "storage_container" {
+resource "azurerm_storage_container" "primary" {
   name                  = "${random_string.random.result}vhds"
   storage_account_name  = azurerm_storage_account.primary.name
   container_access_type = "private"
 }
 
-resource "azurerm_storage_blob" "storage_blob" {
+resource "azurerm_storage_blob" "primary" {
   name = "herpderp1.vhd"
 
   storage_account_name   = azurerm_storage_account.primary.name
-  storage_container_name = azurerm_storage_container.storage_container.name
+  storage_container_name = azurerm_storage_container.primary.name
 
   type = "Page"
   size = 5120
