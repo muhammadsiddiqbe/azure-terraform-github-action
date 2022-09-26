@@ -15,3 +15,21 @@ resource "azurerm_resource_group" "rg" {
     Environment = var.environment
   }
 }
+
+resource "azurerm_resource_group" "secondary" {
+  name     = "secondary_rg"
+  location = var.resource_group_location
+
+  tags = {
+    Environment = var.environment
+  }
+}
+
+resource "azurerm_resource_group" "tertiary" {
+  name     = "secondary_rg"
+  location = var.resource_group_location
+
+  tags = {
+    Environment = var.environment
+  }
+}
