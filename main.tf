@@ -29,29 +29,30 @@ output "object_id" {
 module "ResourceGroups" {
   source = "./ResourceGroups"
 
-  resource_group_name = "MainRG"
+  resource_group_name = "${var.project}MainRG"
   resource_group_location = "eastus"
   environment = var.environment
 }
 
 module "VirtualNetworks" {
   source = "./VirtualNetworks"
+  location = var.location
+  environment = var.environment
 
   public_ip_primary_name = "${var.project}_primary_ip"
-  environment = var.environment
   virtual_network_primary_name = "${var.project}_primary_vn"
-  location = var.location
   subnet_primary_name = "${var.project}_primary_subnet"
   resource_group_name = module.ResourceGroups.rg_name_out
   resource_group_location = module.ResourceGroups.rg_location_out
   network_interface_primary_nic_name = "${var.project}_primary_nic"
   my_terraform_nsg = "${var.project}_primary_nsg"
-
 }
 
 module "StorageAccount" {
   source = "./StorageAccounts"
+  
   base_name = "mypro"
-  resource_group_name = module.ResourceGroups.rg_name_out
   location = var.location
+
+  resource_group_name = module.ResourceGroups.rg_name_out
 }
