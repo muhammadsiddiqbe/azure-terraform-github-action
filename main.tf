@@ -84,13 +84,13 @@ module "ServiceBus" {
 module "AppService" {
   source = "./AppService/FunctionApp"
 
-  prefix = var.prefix
-  location = var.location
+  prefix      = var.prefix
+  location    = var.location
   environment = var.environment
 
-  resource_group_name = module.ResourceGroups.rg_name_out
-  resource_group_location = module.ResourceGroups.rg_location_out
+  resource_group_name             = module.ResourceGroups.rg_name_out
+  resource_group_location         = module.ResourceGroups.rg_location_out
   linux_function_app_primary_name = "primary-func-app"
-  storage_account_name = module.StorageAccount.stg_acc_name
-  storage_account_access_key = module.StorageAccount.stg_acc_access_key
+  storage_account_name            = module.StorageAccount.stg_acc_name
+  storage_account_access_key      = module.StorageAccount.stg_acc_access_key
 }

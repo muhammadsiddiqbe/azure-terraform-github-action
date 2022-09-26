@@ -19,7 +19,7 @@ resource "azurerm_virtual_network" "primary" {
 resource "azurerm_subnet" "public_subnet" {
   name                 = var.subnet_primary_name
   resource_group_name  = var.resource_group_name
-  virtual_network_name = azurerm_virtual_network.primary.name
+  virtual_network_name = var.virtual_network_primary_name
   address_prefixes     = var.subnet_primary_address_prefixes
 
   enforce_private_link_endpoint_network_policies = true
@@ -28,8 +28,8 @@ resource "azurerm_subnet" "public_subnet" {
 
 resource "azurerm_subnet" "endpoint_subnet" {
   name                 = "endpoint_subnet"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = var.virtual_network_primary_name
   address_prefixes     = var.subnet_secondary_address_prefixes
 
   enforce_private_link_endpoint_network_policies = true
@@ -56,14 +56,14 @@ resource "azurerm_network_interface" "primary_nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.subnet.id
+    subnet_id                     = azurerm_subnet.public_subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.primary.id
   }
 }
 
 resource "azurerm_network_security_group" "primary_nsg" {
-  name                = var.primary_nsg
+  name                = "primary_nsg"
   location            = var.location
   resource_group_name = var.resource_group_name
 
