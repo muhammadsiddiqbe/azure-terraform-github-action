@@ -71,7 +71,30 @@ module "VirtualMachines" {
   source = "./VirtualMachines"
 
   resource_group_name = module.ResourceGroups.rg_name_out
-  location = var.location
+  location            = var.location
+  prefix              = var.prefix
+  vm_nic_id           = module.VirtualNetworks.vn_nic_id
+}
+
+module "ServiceBus" {
+  source = "./ServiceBus"
+
+  prefix                  = var.prefix
+  location                = var.location
+  resource_group_name     = module.ResourceGroups.rg_name_out
+  resource_group_location = module.ResourceGroups.rg_location_out
+}
+
+module "AppService" {
+  source = "./AppService/FunctionApp"
+
   prefix = var.prefix
-  vm_nic_id = module.VirtualNetworks.vn_nic_id
+  location = var.location
+  environment = var.environment
+
+  resource_group_name = module.ResourceGroups.rg_name_out
+  resource_group_location = module.ResourceGroups.rg_location_out
+  linux_function_app_primary_name = "primary-func-app"
+  storage_account_name = module.StorageAccount.stg_acc_name
+  storage_account_access_key = module.StorageAccount.stg_acc_access_key
 }
