@@ -1,4 +1,4 @@
-variable "project" {
+variable "prefix" {
   default     = "awsiy"
   type        = string
   description = "Project name"
