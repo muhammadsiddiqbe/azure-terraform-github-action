@@ -52,3 +52,8 @@ variable "environment" {
   type = string
   default = "prod"
 }
+
+variable "resource_group_location" {
+  type = string
+  default = ""
+}

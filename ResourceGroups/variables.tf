@@ -6,7 +6,7 @@ variable "resource_group_name" {
 
 variable "resource_group_location" {
   type = string
-  default = "RG"
+  default = ""
 }
 
 variable "environment" {
