@@ -9,13 +9,13 @@ variable "location" {
 }
 
 variable "environment" {
-  
+  type = string
+  description = "Application environment"
 }
 
 variable "resource_group_name" {
   type        = string
-  default     = "myTFResourceGroup"
-  description = "main resource group"
+  description = "resource group"
 }
 
 variable "resource_group_location" {}
