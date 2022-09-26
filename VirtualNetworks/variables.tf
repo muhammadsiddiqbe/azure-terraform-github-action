@@ -62,3 +62,7 @@ variable "resource_group_location" {
   type = string
   default = ""
 }
+
+variable "psql_db_resource_id" {
+  
+}
