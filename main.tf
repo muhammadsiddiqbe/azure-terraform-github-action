@@ -42,6 +42,8 @@ module "VirtualNetworks" {
   network_interface_primary_nic_name = "${var.prefix}_primary_nic"
   my_terraform_nsg                   = "${var.prefix}_primary_nsg"
   psql_db_resource_id                = module.PostgreSQL.psql_db_resource_id_out
+
+  azurerm_servicebus_namespace_primary_id = module.ServiceBus.azurerm_servicebus_namespace_primary_id
 }
 
 module "StorageAccount" {

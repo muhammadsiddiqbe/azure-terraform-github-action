@@ -64,5 +64,10 @@ variable "resource_group_location" {
 }
 
 variable "psql_db_resource_id" {
-  
+
+}
+
+variable "azurerm_servicebus_namespace_primary_id" {
+  type = string
+  description = "(optional) describe your variable"
 }
