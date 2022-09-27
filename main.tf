@@ -107,5 +107,7 @@ module "EventGrid" {
   storage_account_id          = module.StorageAccount.stg_acc_id_out
   storage_blob_container_name = module.StorageAccount.storage_blob_container_name_out
 
-
+  depends_on = [
+    module.StorageAccount
+  ]
 }
