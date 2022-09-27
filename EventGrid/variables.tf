@@ -6,6 +6,12 @@ variable "location" {
   description = "The Azure Region in which all resources in this example should be created."
 }
 
+variable "eventGridFunctionName" {
+  type        = string
+  description = "The name of the Function which handles Event Grid messages"
+  default     = "StorageHandler"
+}
+
 variable "resource_group_id" {
   type = string
 }

@@ -55,3 +55,14 @@ resource "azurerm_linux_function_app" "function_app" {
   #   value = "Server=some-server.mydomain.com;Integrated Security=SSPI"
   # }
 }
+
+# resource "azurerm_application_insights" "logging" {
+#   name                = "${var.prefix}-ai"
+#   location            = var.location
+#   resource_group_name = azurerm_resource_group.sample.name
+#   application_type    = "web"
+#   retention_in_days   = 90
+#   tags = {
+#     sample = "azure-functions-event-grid-terraform"
+#   }
+# }
