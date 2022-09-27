@@ -18,16 +18,17 @@ variable "resource_group_name" {
   description = "resource group"
 }
 
-variable "resource_group_location" {}
+variable "resource_group_location" {
+  type        = string
+}
 
 variable "linux_function_app_primary_name" {
-
+  type        = string
 }
 
 variable "storage_account_name" {
-
-
+  type        = string
 }
 variable "storage_account_access_key" {
-
+  type        = string
 }
