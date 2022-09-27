@@ -35,7 +35,7 @@ resource "azurerm_private_endpoint" "stg-acc-private-endpoint" {
   private_service_connection {
     name                           = "storage-account-privateserviceconnection"
     private_connection_resource_id = var.stg_acc_rc_id
-    subresource_names              = ["blob", "queue"]
+    subresource_names              = ["blob"]
     is_manual_connection           = false
   }
 }
