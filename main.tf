@@ -44,6 +44,8 @@ module "VirtualNetworks" {
   psql_db_resource_id                = module.PostgreSQL.psql_db_resource_id_out
 
   azurerm_servicebus_namespace_primary_id = module.ServiceBus.azurerm_servicebus_namespace_primary_id
+
+  stg_acc_rc_id = module.StorageAccount.stg_acc_id_out
 }
 
 module "StorageAccount" {
@@ -103,11 +105,12 @@ module "EventGrid" {
   location = var.location
 
   resource_group_id           = module.ResourceGroups.resource_group_id_out
+  resource_group_name         = module.ResourceGroups.rg_name_out
   queue_name                  = module.StorageAccount.stg_acc_queue_name_out
   storage_account_id          = module.StorageAccount.stg_acc_id_out
   storage_blob_container_name = module.StorageAccount.storage_blob_container_name_out
 
-  depends_on = [
-    module.StorageAccount
-  ]
+  # depends_on = [
+  #   module.StorageAccount
+  # ]
 }
