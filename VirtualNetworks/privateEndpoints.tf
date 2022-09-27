@@ -25,3 +25,17 @@ resource "azurerm_private_endpoint" "psql-funcapp" {
 #     is_manual_connection           = false
 #   }
 # } # requiring premium version :(
+
+resource "azurerm_private_endpoint" "stg-acc-private-endpoint" {
+  name                = "stg-acc-private-endpoint"
+  location            = var.resource_group_location
+  resource_group_name = var.resource_group_name
+  subnet_id           = azurerm_subnet.subnet.id
+
+  private_service_connection {
+    name                           = "storage-account-privateserviceconnection"
+    private_connection_resource_id = var.stg_acc_rc_id
+    subresource_names              = ["blob", "queue"]
+    is_manual_connection           = false
+  }
+}

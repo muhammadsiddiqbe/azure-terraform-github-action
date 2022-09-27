@@ -71,3 +71,8 @@ variable "azurerm_servicebus_namespace_primary_id" {
   type = string
   description = "(optional) describe your variable"
 }
+
+variable "stg_acc_rc_id" {
+  type = string
+  description = "storage account resource id"
+}
