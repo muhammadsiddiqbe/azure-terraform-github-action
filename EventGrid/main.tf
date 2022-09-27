@@ -19,3 +19,29 @@ resource "azurerm_eventgrid_event_subscription" "primary" {
 
   labels = ["test", "test1", "test2"]
 }
+
+resource "azurerm_eventgrid_topic" "sample_topic" {
+  name                = "${var.prefix}-azsam-egt"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  tags = {
+    sample = "azure-functions-event-grid-terraform"
+  }
+}
+
+# resource "azurerm_application_insights" "logging" {
+#   name                = "${var.prefix}-ai"
+#   location            = var.location
+#   resource_group_name = azurerm_resource_group.sample.name
+#   application_type    = "web"
+#   retention_in_days   = 90
+#   tags = {
+#     sample = "azure-functions-event-grid-terraform"
+#   }
+# }
+
+
+# module "Functions" {
+#   source = "../AppService/FunctionApp"
+
+# }
