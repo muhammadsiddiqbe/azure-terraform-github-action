@@ -49,19 +49,19 @@ module "functions" {
   sample_topic_key                         = azurerm_eventgrid_topic.sample_topic.primary_access_key
 }
 
-resource "azurerm_eventgrid_event_subscription" "eventgrid_subscription" {
-  name   = "${var.prefix}-handlerfxn-egsub"
-  scope  = azurerm_storage_account.inbox.id
-  labels = ["azure-functions-event-grid-terraform"]
+# resource "azurerm_eventgrid_event_subscription" "eventgrid_subscription" {
+#   name   = "${var.prefix}-handlerfxn-egsub"
+#   scope  = azurerm_storage_account.inbox.id
+#   labels = ["azure-functions-event-grid-terraform"]
 
-  azure_function_endpoint {
-    function_id = "${module.functions.function_id}/functions/${module.functions.eventGridFunctionName}"
+#   azure_function_endpoint {
+#     function_id = "${module.functions.function_id}/functions/${module.functions.eventGridFunctionName}"
 
-    # defaults, specified to avoid "no-op" changes when 'apply' is re-ran
-    max_events_per_batch              = 1
-    preferred_batch_size_in_kilobytes = 64
-  }
-}
+#     # defaults, specified to avoid "no-op" changes when 'apply' is re-ran
+#     max_events_per_batch              = 1
+#     preferred_batch_size_in_kilobytes = 64
+#   }
+# }
 
 
 # resource "azurerm_eventgrid_event_subscription" "primary" {
