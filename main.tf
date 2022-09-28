@@ -99,7 +99,7 @@ module "AppService" {
   resource_group_name             = module.ResourceGroups.rg_name_out
   resource_group_location         = module.ResourceGroups.rg_location_out
   linux_function_app_primary_name = "primary-func-app"
-  storage_account_namse            = module.StorageAccount.stg_acc_name_out
+  storage_account_name            = module.StorageAccount.stg_acc_name_out
   storage_account_access_key      = module.StorageAccount.stg_acc_access_key_out
 
   # depends_on = [
