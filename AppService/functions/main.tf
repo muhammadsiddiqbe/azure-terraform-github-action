@@ -13,20 +13,6 @@ resource "azurerm_service_plan" "fxnapp" {
 }
 
 # Linux consumption function app
-resource "azurerm_app_service_plan" "fxnapp" {
-  name                = "${var.prefix}-lxfxn-plan"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  kind                = "functionapp"
-  reserved            = true
-  sku {
-    tier = "Dynamic"
-    size = "Y1"
-  }
-  tags = {
-    sample = "azure-functions-event-grid-terraform"
-  }
-}
 
 # # Windows Containers consumption function app
 # resource "azurerm_app_service_plan" "fxnapp" {

@@ -46,6 +46,10 @@ module "VirtualNetworks" {
   azurerm_servicebus_namespace_primary_id = module.ServiceBus.azurerm_servicebus_namespace_primary_id
 
   stg_acc_rc_id = module.StorageAccount.stg_acc_id_out
+
+  depends_on = [
+    module.StorageAccount
+  ]
 }
 
 module "StorageAccount" {
@@ -95,8 +99,12 @@ module "AppService" {
   resource_group_name             = module.ResourceGroups.rg_name_out
   resource_group_location         = module.ResourceGroups.rg_location_out
   linux_function_app_primary_name = "primary-func-app"
-  storage_account_name            = module.StorageAccount.stg_acc_name_out
+  storage_account_namse            = module.StorageAccount.stg_acc_name_out
   storage_account_access_key      = module.StorageAccount.stg_acc_access_key_out
+
+  # depends_on = [
+  #   module.StorageAccount
+  # ]
 }
 
 module "EventGrid" {
@@ -110,7 +118,7 @@ module "EventGrid" {
   storage_account_id          = module.StorageAccount.stg_acc_id_out
   storage_blob_container_name = module.StorageAccount.storage_blob_container_name_out
 
-  # depends_on = [
-  #   module.StorageAccount
-  # ]
+  depends_on = [
+    module.StorageAccount
+  ]
 }
