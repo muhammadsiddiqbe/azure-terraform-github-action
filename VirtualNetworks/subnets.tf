@@ -18,13 +18,6 @@ resource "azurerm_subnet" "subnet-2" {
   virtual_network_name = var.virtual_network_primary_name
   address_prefixes     = var.subnet_primary_address_prefixes
 
-  delegation {
-    name = "Microsoft.DBforPostgreSQL/exibleServers"
-    service_delegation {
-      name = azurerm_private_endpoint.psql-funcapp.name
-    }
-  }
-
   enforce_private_link_endpoint_network_policies = true
 
   depends_on = [
