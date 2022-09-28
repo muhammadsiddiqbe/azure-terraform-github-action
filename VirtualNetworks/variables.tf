@@ -33,6 +33,11 @@ variable "subnet_secondary_address_prefixes" {
   default = ["10.0.2.0/24"]
 }
 
+variable "subnet_tertiary_address_prefixes" {
+  type    = list(any)
+  default = ["10.0.3.0/24"]
+}
+
 variable "network_interface_primary_nic_name" {
   type    = string
   default = "primary-nic"
