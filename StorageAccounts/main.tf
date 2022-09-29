@@ -14,7 +14,7 @@ resource "random_string" "random" {
 }
 
 resource "azurerm_storage_account" "primary" {
-  name                     = "${lower(var.base_name)}${random_string.random.result}"
+  name                     = "primary${random_string.random.result}"
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
@@ -39,7 +39,7 @@ resource "azurerm_storage_container" "primary" {
 }
 
 resource "azurerm_storage_blob" "primary" {
-  name = "herpderp1.vhd"
+  name = "${random_string.random.result}-blob"
 
   storage_account_name   = azurerm_storage_account.primary.name
   storage_container_name = azurerm_storage_container.primary.name
@@ -51,7 +51,7 @@ resource "azurerm_storage_blob" "primary" {
 # SECONDARY ACCOUNT
 
 resource "azurerm_storage_account" "secondary" {
-  name                     = "ssecondary${random_string.random.result}"
+  name                     = "secondary${random_string.random.result}"
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
@@ -62,4 +62,25 @@ resource "azurerm_storage_account" "secondary" {
     bypass         = ["AzureServices", "Logging", "Metrics"]
     default_action = "Allow"
   }
+}
+
+resource "azurerm_storage_queue" "secondary" {
+  name                 = "${random_string.random.result}queue"
+  storage_account_name = azurerm_storage_account.secondary.name
+}
+
+resource "azurerm_storage_container" "secondary" {
+  name                  = "${random_string.random.result}vhds"
+  storage_account_name  = azurerm_storage_account.secondary.name
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_blob" "secondary" {
+  name = "${random_string.random.result}-blob"
+
+  storage_account_name   = azurerm_storage_account.secondary.name
+  storage_container_name = azurerm_storage_container.secondary.name
+
+  type = "Page"
+  size = 5120
 }
