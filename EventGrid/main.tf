@@ -39,15 +39,15 @@ resource "azurerm_storage_account" "inbox" {
   }
 }
 
-module "functions" {
-  source                                   = "../AppService/functions"
-  prefix                                   = var.prefix
-  resource_group_name                      = azurerm_resource_group.sample.name
-  location                                 = azurerm_resource_group.sample.location
-  application_insights_instrumentation_key = azurerm_application_insights.logging.instrumentation_key
-  sample_topic_endpoint                    = azurerm_eventgrid_topic.sample_topic.endpoint
-  sample_topic_key                         = azurerm_eventgrid_topic.sample_topic.primary_access_key
-}
+# module "functions" {
+#   source                                   = "../AppService/functions"
+#   prefix                                   = var.prefix
+#   resource_group_name                      = azurerm_resource_group.sample.name
+#   location                                 = azurerm_resource_group.sample.location
+#   application_insights_instrumentation_key = azurerm_application_insights.logging.instrumentation_key
+#   sample_topic_endpoint                    = azurerm_eventgrid_topic.sample_topic.endpoint
+#   sample_topic_key                         = azurerm_eventgrid_topic.sample_topic.primary_access_key
+# }
 
 # resource "azurerm_eventgrid_event_subscription" "eventgrid_subscription" {
 #   name   = "${var.prefix}-handlerfxn-egsub"
