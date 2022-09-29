@@ -11,7 +11,7 @@ resource "azurerm_service_plan" "primary" {
 }
 
 resource "azurerm_linux_function_app" "primary" {
-  name                = var.linux_function_app_primary_name
+  name                = "main-func-app"
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
 
@@ -24,7 +24,7 @@ resource "azurerm_linux_function_app" "primary" {
 }
 
 resource "azurerm_linux_function_app" "function_app" {
-  name                = "${var.prefix}-${var.environment}-function-app"
+  name                = "secondary-func-app"
   resource_group_name = var.resource_group_name
   location            = var.resource_group_location
 
@@ -56,13 +56,13 @@ resource "azurerm_linux_function_app" "function_app" {
   # }
 }
 
-# resource "azurerm_application_insights" "logging" {
-#   name                = "${var.prefix}-ai"
-#   location            = var.location
-#   resource_group_name = azurerm_resource_group.sample.name
-#   application_type    = "web"
-#   retention_in_days   = 90
-#   tags = {
-#     sample = "azure-functions-event-grid-terraform"
-#   }
-# }
+resource "azurerm_application_insights" "logging" {
+  name                = "${var.prefix}-ai"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  application_type    = "web"
+  retention_in_days   = 90
+  tags = {
+    sample = "azure-functions-event-grid-terraform"
+  }
+}

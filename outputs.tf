@@ -16,5 +16,5 @@ output "storage_account_name" {
 
 output "storage_account_access_key" {
   sensitive = true
-  value = module.StorageAccount.stg_acc_access_key_out
+  value     = module.StorageAccount.stg_acc_access_key_out
 }
