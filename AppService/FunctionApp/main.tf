@@ -16,11 +16,16 @@ resource "azurerm_linux_function_app" "primary" {
   resource_group_name = var.resource_group_name
 
   service_plan_id = azurerm_service_plan.primary.id
-
   storage_account_name       = var.storage_account_name
   storage_account_access_key = var.storage_account_access_key
 
   site_config {}
+
+  app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE"       = "1",
+    "FUNCTIONS_WORKER_RUNTIME"       = "node",
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.logging.instrumentation_key,
+  }
 }
 
 resource "azurerm_linux_function_app" "function_app" {
@@ -29,24 +34,22 @@ resource "azurerm_linux_function_app" "function_app" {
   location            = var.resource_group_location
 
   service_plan_id = azurerm_service_plan.primary.id
+  storage_account_name       = var.storage_account_name
+  storage_account_access_key = var.storage_account_access_key
 
-  # app_settings = {
-  #   "WEBSITE_RUN_FROM_PACKAGE"       = "",
-  #   "FUNCTIONS_WORKER_RUNTIME"       = "node",
-  #   "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.application_insights.instrumentation_key,
-  # }
+
+  app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE"       = "1",
+    "FUNCTIONS_WORKER_RUNTIME"       = "node",
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.logging.instrumentation_key,
+  }
 
   site_config {
 
   }
 
-  storage_account_name       = var.storage_account_name
-  storage_account_access_key = var.storage_account_access_key
-
   lifecycle {
-    ignore_changes = [
-      app_settings["WEBSITE_RUN_FROM_PACKAGE"],
-    ]
+
   }
 
   # connection_string {
