@@ -26,6 +26,13 @@ resource "azurerm_linux_function_app" "primary" {
     "FUNCTIONS_WORKER_RUNTIME"       = "node",
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.logging.instrumentation_key,
   }
+
+  connection_string {
+    name = "PostgreSQL"
+    type = "PostgreSQL"
+    value = "somevalue"
+
+  }
 }
 
 resource "azurerm_linux_function_app" "function_app" {
@@ -52,11 +59,13 @@ resource "azurerm_linux_function_app" "function_app" {
 
   }
 
-  # connection_string {
-  #   name  = azurerm_postgresql_database.postgressql_db.name
-  #   type  = "SQLServer"
-  #   value = "Server=some-server.mydomain.com;Integrated Security=SSPI"
-  # }
+  connection_string {
+    name = "ServiceBus"
+    type = "ServiceBus"
+    value = "somevalue"
+
+  }
+
 }
 
 resource "azurerm_application_insights" "logging" {
