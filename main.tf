@@ -5,11 +5,20 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 3.0.2"
     }
+
+    azuread = {
+      source = "hashicorp/azuread"
+      version = "2.29.0"
+    }
+
   }
 
   required_version = ">= 1.1.0"
 }
 
+provider "azuread" {
+  # Configuration options
+}
 provider "azurerm" {
   features {
     key_vault {
