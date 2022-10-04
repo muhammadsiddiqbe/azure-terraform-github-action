@@ -36,7 +36,7 @@ resource "azurerm_linux_function_app" "primary" {
 }
 
 resource "azurerm_linux_function_app" "function_app" {
-  name                = "secondary-func-app"
+  name                = "secondary-func-app-234"
   resource_group_name = var.resource_group_name
   location            = var.resource_group_location
 

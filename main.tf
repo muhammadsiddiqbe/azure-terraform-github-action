@@ -7,10 +7,16 @@ terraform {
     }
 
     azuread = {
-      source = "hashicorp/azuread"
+      source  = "hashicorp/azuread"
       version = "2.29.0"
     }
+  }
 
+  backend "azurerm" {
+    resource_group_name  = "tfstate"
+    storage_account_name = "tfstatestgacc"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
   }
 
   required_version = ">= 1.1.0"
@@ -19,6 +25,7 @@ terraform {
 provider "azuread" {
   # Configuration options
 }
+
 provider "azurerm" {
   features {
     key_vault {
@@ -31,6 +38,35 @@ provider "azurerm" {
 }
 
 data "azuread_client_config" "current" {}
+
+resource "random_string" "resource_code" {
+  length  = 5
+  special = false
+  upper   = false
+}
+
+resource "azurerm_resource_group" "tfstate" {
+  name     = "tfstate"
+  location = "East US"
+}
+
+resource "azurerm_storage_account" "tfstate" {
+  name                     = "tfstatestgacc"
+  resource_group_name      = azurerm_resource_group.tfstate.name
+  location                 = azurerm_resource_group.tfstate.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  tags = {
+    environment = "staging"
+  }
+}
+
+resource "azurerm_storage_container" "tfstate" {
+  name                  = "tfstate"
+  storage_account_name  = azurerm_storage_account.tfstate.name
+  container_access_type = "blob"
+}
 
 # Modules
 

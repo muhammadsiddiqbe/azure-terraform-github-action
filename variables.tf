@@ -21,11 +21,11 @@ variable "location" {
 variable "psql_admin_login" {
   type      = string
   sensitive = true
-  default = "awsiyadmin"
+  default   = "awsiyadmin"
 }
 
 variable "psql_admin_password" {
   type      = string
   sensitive = true
-  default = "oit1slAac^OcHir1:)@"
+  default   = "oit1slAac^OcHir1:)@"
 }
