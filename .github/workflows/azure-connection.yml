@@ -6,18 +6,6 @@ on:
       - "master"
 
 jobs:
-  install_az:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "install az"
-        run: "sudo apt-get update && sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg"
-      - name:  "download cli"
-        run: "curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null"
-      - name: "download install singing key"
-        run: "AZ_REPO=$(lsb_release -cs) && echo 'deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main' | sudo tee /etc/apt/sources.list.d/azure-cli.list"
-      - name: "Install"
-        run: "sudo apt-get update && sudo apt-get install azure-cli"
-
   terraform:
     name: 'Terraform'
     env:
@@ -33,6 +21,9 @@ jobs:
         shell: bash
 
     steps:
+    - name:  InstallAz
+      run: "sudo apt-get install azure-cli"
+
     - name: Checkout
       uses: actions/checkout@v2
 
