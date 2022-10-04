@@ -21,8 +21,6 @@ jobs:
         shell: bash
 
     steps:
-    - name: "check az version"
-      run: "az --version"
 
     - name: Checkout
       uses: actions/checkout@v2
