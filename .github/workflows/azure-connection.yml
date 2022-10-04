@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name:  InstallAz
-      run: "sudo apt-get install azure-cli"
+      run: "az login"
 
     - name: Checkout
       uses: actions/checkout@v2
