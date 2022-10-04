@@ -21,12 +21,8 @@ jobs:
         shell: bash
 
     steps:
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - run: |
-        az webapp list --query "[?state=='Running']"
+    - name: "check az version"
+      run: "az --version"
 
     - name: Checkout
       uses: actions/checkout@v2
