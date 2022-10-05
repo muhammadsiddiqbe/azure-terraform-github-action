@@ -30,3 +30,7 @@ variable "vm_nic_id" {
   type = string
   description = "vm network interface id should be list"
 }
+
+# variable "main_vm_key" {
+#   type = string
+# }
