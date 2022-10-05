@@ -5,5 +5,5 @@ variable "environment" {
 
 variable "location" {
   type = string
-  default = ""
+  default = "eastus"
 }
