@@ -56,10 +56,10 @@ jobs:
       #   tf_actions_subcommand: 'apply'
       #   tf_actions_working_dir: "./terraform"
       env:
-        prefix: ${{ secrets.prefix }}
-        environment: ${{ secrets.environment }}
-        location: ${{ secrets.location }}
-        psql_admin_login: ${{ secrets.psql_admin_login }}
-        psql_admin_password: ${{ secrets.psql_admin_password }}
+        prefix: ${{ secrets.PREFIX }}
+        environment: ${{ secrets.ENVIRONMENT }}
+        location: ${{ secrets.LOCATION }}
+        psql_admin_login: ${{ secrets.PSQL_ADMIN_LOGIN }}
+        psql_admin_password: ${{ secrets.PSQL_ADMIN_PASSWORD }}
       run: |
-        terraform apply -auto-approve -var="prefix=${{ secrets.prefix }}" -var="environment=${{ secrets.environment }}" -var="location=${{ secrets.location }}" -var="psql_admin_login=${{ secrets.psql_admin_login }}" -var="psql_admin_password=${{ secrets.psql_admin_password }}" -input=false
+        terraform apply -auto-approve -var="prefix=${{ secrets.PREFIX }}" -var="environment=${{ secrets.ENVIRONMENT }}" -var="location=${{ secrets.LOCATION }}" -var="psql_admin_login=${{ secrets.PSQL_ADMIN_LOGIN }}" -var="psql_admin_password=${{ secrets.PSQL_ADMIN_PASSWORD }}" -input=false
