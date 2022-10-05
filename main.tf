@@ -14,7 +14,7 @@ terraform {
 
   backend "azurerm" {
     resource_group_name  = "tfstate"
-    storage_account_name = "tfstatestgacc"
+    storage_account_name = "tfstatestgacc4565"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
   }
@@ -39,34 +39,40 @@ provider "azurerm" {
 
 data "azuread_client_config" "current" {}
 
-resource "random_string" "resource_code" {
-  length  = 5
-  special = false
-  upper   = false
+data "azurerm_subscription" "current" {}
+
+output "current_subscription_display_name" {
+  value = data.azurerm_subscription.current.display_name
 }
 
-resource "azurerm_resource_group" "tfstate" {
-  name     = "tfstate"
-  location = "East US"
-}
+# resource "random_string" "resource_code" {
+#   length  = 5
+#   special = false
+#   upper   = false
+# }
 
-resource "azurerm_storage_account" "tfstate" {
-  name                     = "tfstatestgacc"
-  resource_group_name      = azurerm_resource_group.tfstate.name
-  location                 = azurerm_resource_group.tfstate.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+# resource "azurerm_resource_group" "tfstate" {
+#   name     = "tfstate"
+#   location = "East US"
+# }
 
-  tags = {
-    environment = "staging"
-  }
-}
+# resource "azurerm_storage_account" "tfstate" {
+#   name                     = "tfstatestgacc"
+#   resource_group_name      = azurerm_resource_group.tfstate.name
+#   location                 = azurerm_resource_group.tfstate.location
+#   account_tier             = "Standard"
+#   account_replication_type = "LRS"
 
-resource "azurerm_storage_container" "tfstate" {
-  name                  = "tfstate"
-  storage_account_name  = azurerm_storage_account.tfstate.name
-  container_access_type = "blob"
-}
+#   tags = {
+#     environment = "staging"
+#   }
+# }
+
+# resource "azurerm_storage_container" "tfstate" {
+#   name                  = "tfstate"
+#   storage_account_name  = azurerm_storage_account.tfstate.name
+#   container_access_type = "blob"
+# }
 
 # Modules
 
