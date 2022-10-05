@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_service_plan" "primary" {
-  name                = "${var.prefix}-sp"
+  name                = "${var.prefix}-sp-4565"
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
   os_type             = "Linux"
