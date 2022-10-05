@@ -62,4 +62,4 @@ jobs:
         psql_admin_login: ${{ secrets.psql_admin_login }}
         psql_admin_password: ${{ secrets.psql_admin_password }}
       run: |
-        terraform apply -auto-approve -var="prefix: ${{ secrets.prefix }}"
+        terraform apply -auto-approve -var="prefix=${{ secrets.prefix }} -var="environment=${{ secrets.environment }} -var="location=${{ secrets.location }} -var="psql_admin_login=${{ secrets.psql_admin_login }} -var="psql_admin_password=${{ secrets.psql_admin_password }}"
