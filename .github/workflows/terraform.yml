@@ -13,11 +13,11 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      prefix: ${{secrets.prefix}}
-      environment: ${{secrets.environment}}
-      location: ${{secrets.location}}
-      psql_admin_login: ${{secrets.psql_admin_login}}
-      psql_admin_password: ${{secrets.psql_admin_password}}
+      prefix: ${{ secrets.prefix }}
+      environment: ${{ secrets.environment }}
+      location: ${{ secrets.location }}
+      psql_admin_login: ${{ secrets.psql_admin_login }}
+      psql_admin_password: ${{ secrets.psql_admin_password }}
     runs-on: ubuntu-latest
     environment: production
 
@@ -26,9 +26,6 @@ jobs:
         shell: bash
 
     steps:
-
-    - name: "Create env file"
-      run: "echo ${{secrets.ENV_FILE}} >> main.tfvars && ls"
 
     - name: Checkout
       uses: actions/checkout@v2
