@@ -11,7 +11,7 @@ resource "azurerm_service_plan" "primary" {
 }
 
 resource "azurerm_linux_function_app" "primary" {
-  name                = "main-func-app"
+  name                = "main-func-app-4565"
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
 
