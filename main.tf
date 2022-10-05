@@ -45,35 +45,6 @@ output "current_subscription_display_name" {
   value = data.azurerm_subscription.current.display_name
 }
 
-# resource "random_string" "resource_code" {
-#   length  = 5
-#   special = false
-#   upper   = false
-# }
-
-# resource "azurerm_resource_group" "tfstate" {
-#   name     = "tfstate"
-#   location = "East US"
-# }
-
-# resource "azurerm_storage_account" "tfstate" {
-#   name                     = "tfstatestgacc"
-#   resource_group_name      = azurerm_resource_group.tfstate.name
-#   location                 = azurerm_resource_group.tfstate.location
-#   account_tier             = "Standard"
-#   account_replication_type = "LRS"
-
-#   tags = {
-#     environment = "staging"
-#   }
-# }
-
-# resource "azurerm_storage_container" "tfstate" {
-#   name                  = "tfstate"
-#   storage_account_name  = azurerm_storage_account.tfstate.name
-#   container_access_type = "blob"
-# }
-
 # Modules
 
 module "ResourceGroups" {
@@ -171,9 +142,4 @@ module "EventGrid" {
   depends_on = [
     module.StorageAccount
   ]
-}
-
-module "StateStorage" {
-  source = "./StateStorage"
-
 }
