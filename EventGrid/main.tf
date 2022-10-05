@@ -16,7 +16,7 @@ resource "azurerm_eventgrid_topic" "sample_topic" {
 }
 
 resource "azurerm_application_insights" "logging" {
-  name                = "${var.prefix}-ai"
+  name                = "${var.prefix}-ai4565"
   location            = var.location
   resource_group_name = var.resource_group_name
   application_type    = "web"

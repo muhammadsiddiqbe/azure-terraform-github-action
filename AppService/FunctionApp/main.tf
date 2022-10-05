@@ -69,7 +69,7 @@ resource "azurerm_linux_function_app" "function_app" {
 }
 
 resource "azurerm_application_insights" "logging" {
-  name                = "${var.prefix}-ai"
+  name                = "${var.prefix}-ai283"
   location            = var.location
   resource_group_name = var.resource_group_name
   application_type    = "web"
