@@ -21,4 +21,9 @@ jobs:
     steps:
     - name: Terraform Destroy
       run: |
-        terraform destroy -auto-approve -var="prefix=${{ secrets.PREFIX }}" -var="environment=${{ secrets.ENVIRONMENT }}" -var="location=${{ secrets.LOCATION }}" -var="psql_admin_login=${{ secrets.PSQL_ADMIN_LOGIN }}" -var="psql_admin_password=${{ secrets.PSQL_ADMIN_PASSWORD }}" -input=false
+        terraform destroy -auto-approve
+        -var="prefix=${{ secrets.TF_VAR_PREFIX }}"
+        -var="environment=${{ secrets.TF_VAR_ENVIRONMENT }}"
+        -var="location=${{ secrets.TF_VAR_LOCATION }}"
+        -var="PSQL_ADMIN_LOGIN=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}"
+        -var="PSQL_ADMIN_PASSWORD=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false
