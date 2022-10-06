@@ -65,9 +65,9 @@ jobs:
         TF_VAR_PSQL_ADMIN_LOGIN: ${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}
         TF_VAR_PSQL_ADMIN_PASSWORD: ${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}
       run: |
-        terraform apply -auto-approve
-        -var="TF_VAR_PREFIX=${{ secrets.TF_VAR_PREFIX }}"
-        -var="TF_VAR_ENVIRONMENT=${{ secrets.TF_VAR_ENVIRONMENT }}"
-        -var="TF_VAR_LOCATION=${{ secrets.TF_VAR_LOCATION }}"
-        -var="TF_VAR_PSQL_ADMIN_LOGIN=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}"
-        -var="TF_VAR_PSQL_ADMIN_PASSWORD=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false --allow-set-undeclared-variable
+        terraform apply -auto-approve \
+        -var="TF_VAR_PREFIX=${{ secrets.TF_VAR_PREFIX }}" \
+        -var="TF_VAR_ENVIRONMENT=${{ secrets.TF_VAR_ENVIRONMENT }}" \
+        -var="TF_VAR_LOCATION=${{ secrets.TF_VAR_LOCATION }}" \
+        -var="TF_VAR_PSQL_ADMIN_LOGIN=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}" \
+        -var="TF_VAR_PSQL_ADMIN_PASSWORD=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false
