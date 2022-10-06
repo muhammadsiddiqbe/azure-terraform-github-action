@@ -1,24 +1,24 @@
-name: 'Terraform Destroy'
+# name: 'Terraform Destroy'
 
-on:
-  workflow_dispatch
+# on:
+#   workflow_dispatch
 
-jobs:
-  terraform-destroy:
-    name: 'Terraform'
-    env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-    runs-on: ubuntu-latest
-    environment: production
+# jobs:
+#   terraform-destroy:
+#     name: 'Terraform'
+#     env:
+#       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+#       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+#       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+#     runs-on: ubuntu-latest
+#     environment: production
 
-    defaults:
-      run:
-        shell: bash
+#     defaults:
+#       run:
+#         shell: bash
 
-    steps:
-    - name: Terraform Destroy
-      run: |
-        terraform destroy -auto-approve -var="prefix=${{ secrets.PREFIX }}" -var="environment=${{ secrets.ENVIRONMENT }}" -var="location=${{ secrets.LOCATION }}" -var="psql_admin_login=${{ secrets.PSQL_ADMIN_LOGIN }}" -var="psql_admin_password=${{ secrets.PSQL_ADMIN_PASSWORD }}" -input=false
+#     steps:
+#     - name: Terraform Destroy
+#       run: |
+#         terraform destroy -auto-approve -var="prefix=${{ secrets.PREFIX }}" -var="environment=${{ secrets.ENVIRONMENT }}" -var="location=${{ secrets.LOCATION }}" -var="psql_admin_login=${{ secrets.PSQL_ADMIN_LOGIN }}" -var="psql_admin_password=${{ secrets.PSQL_ADMIN_PASSWORD }}" -input=false
