@@ -23,8 +23,8 @@ jobs:
       run: |
         TF_STRICT_MODE=false \
         terraform destroy -auto-approve \
-        -var="TF_VAR_PREFIX=${{ secrets.TF_VAR_PREFIX }}" \
-        -var="TF_VAR_ENVIRONMENT=${{ secrets.TF_VAR_ENVIRONMENT }}" \
-        -var="TF_VAR_LOCATION=${{ secrets.TF_VAR_LOCATION }}" \
-        -var="PSQL_ADMIN_LOGIN=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}" \
-        -var="PSQL_ADMIN_PASSWORD=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false \
+        -var="prefix=${{ secrets.TF_VAR_PREFIX }}" \
+        -var="environment=${{ secrets.TF_VAR_ENVIRONMENT }}" \
+        -var="location=${{ secrets.TF_VAR_LOCATION }}" \
+        -var="psql_admin_login=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}" \
+        -var="psql_admin_password=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false \
