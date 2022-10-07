@@ -21,8 +21,8 @@ jobs:
     steps:
     - name: Terraform Destroy
       run: |
-        pwd
         ls -a
+        pwd
         TF_STRICT_MODE=false \
         terraform destroy -auto-approve \
         -var="prefix=${{ secrets.TF_VAR_PREFIX }}" \
