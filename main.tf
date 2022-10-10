@@ -86,33 +86,33 @@ module "StorageAccount" {
   resource_group_name = module.ResourceGroups.rg_name_out
 }
 
-module "PostgreSQL" {
-  source              = "./PostgreSQL"
-  base_name           = "${var.prefix}psql"
-  location            = var.location
-  resource_group_name = module.ResourceGroups.rg_name_out
+# module "PostgreSQL" {
+#   source              = "./PostgreSQL"
+#   base_name           = "${var.prefix}psql"
+#   location            = var.location
+#   resource_group_name = module.ResourceGroups.rg_name_out
 
-  psql_admin_login    = var.psql_admin_login
-  psql_admin_password = var.psql_admin_password
-}
+#   psql_admin_login    = var.psql_admin_login
+#   psql_admin_password = var.psql_admin_password
+# }
 
-module "VirtualMachines" {
-  source = "./VirtualMachines"
+# module "VirtualMachines" {
+#   source = "./VirtualMachines"
 
-  resource_group_name = module.ResourceGroups.rg_name_out
-  location            = var.location
-  prefix              = var.prefix
-  vm_nic_id           = module.VirtualNetworks.vn_nic_id
-}
+#   resource_group_name = module.ResourceGroups.rg_name_out
+#   location            = var.location
+#   prefix              = var.prefix
+#   vm_nic_id           = module.VirtualNetworks.vn_nic_id
+# }
 
-module "ServiceBus" {
-  source = "./ServiceBus"
+# module "ServiceBus" {
+#   source = "./ServiceBus"
 
-  prefix                  = var.prefix
-  location                = var.location
-  resource_group_name     = module.ResourceGroups.rg_name_out
-  resource_group_location = module.ResourceGroups.rg_location_out
-}
+#   prefix                  = var.prefix
+#   location                = var.location
+#   resource_group_name     = module.ResourceGroups.rg_name_out
+#   resource_group_location = module.ResourceGroups.rg_location_out
+# }
 
 module "AppService" {
   source = "./AppService/FunctionApp"
