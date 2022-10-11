@@ -66,7 +66,7 @@ jobs:
         -var="psql_admin_password=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false
 
     - name:  Create CSV file
-      run: touch users.csv
+      run: mkdir data && touch data/users.csv
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
@@ -74,7 +74,7 @@ jobs:
         # Artifact name
         name: "Create terraform tfstate artifact"
         # A file, directory or wildcard pattern that describes what to upload
-        path: "./users.csv"
+        path: "./data"
 
     - name: Copy files
       uses: ulaval/azure-blob-copy-action@v1
@@ -82,7 +82,7 @@ jobs:
         action: upload
         connection_string: ${{ secrets.CONNECTION_STRING }}
         container_name: files
-        local_directory: ./users.csv
+        local_directory: ./data
         http_headers: |
           - glob: "**/*.????????.*"
             headers:
