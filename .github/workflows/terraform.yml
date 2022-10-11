@@ -72,7 +72,7 @@ jobs:
         -var="location=${{ secrets.TF_VAR_LOCATION }}" \
         -var="psql_admin_login=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}" \
         -var="psql_admin_password=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false
-    
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
@@ -80,3 +80,19 @@ jobs:
         name: "Create terraform tfstate artifact"
         # A file, directory or wildcard pattern that describes what to upload
         path: "./"
+
+    - name: Copy files
+      uses: ulaval/azure-blob-copy-action@v1
+      with:
+        action: upload
+        connection_string: ${{ secrets.CONNECTION_STRING }}
+        container_name: files
+        local_directory: azure_blob_storage_dataframe.py
+        http_headers: |
+          - glob: "**/*.????????.*"
+            headers:
+              Cache-Control: public, max-age=604800, immutable
+
+          - glob: "**/*"
+            headers:
+              Cache-Control: public, max-age=120, s-maxage=180, proxy-revalidate
