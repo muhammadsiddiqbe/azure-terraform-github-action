@@ -5,13 +5,13 @@ name: 'Terraform'
 #     branches:
 #       - "master"
 
+on:
+  workflow_dispatch
+
 env:
   AZURE_FUNCTIONAPP_NAME: secondary-func-app-234
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './api'
   NODE_VERSION: '16.x'
-
-on:
-  workflow_dispatch
 
 jobs:
   terraform:
