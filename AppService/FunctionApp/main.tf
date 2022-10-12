@@ -22,7 +22,7 @@ resource "azurerm_linux_function_app" "primary" {
   site_config {}
 
   app_settings = {
-    "WEBSITE_RUN_FROM_PACKAGE"       = "https://tfstatestgacc4565.blob.core.windows.net/mycode/az-funcs.zip",
+    # "WEBSITE_RUN_FROM_PACKAGE"       = "https://tfstatestgacc4565.blob.core.windows.net/mycode/az-funcs.zip",
     "FUNCTIONS_WORKER_RUNTIME"       = "node",
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.logging.instrumentation_key,
   }
@@ -46,7 +46,7 @@ resource "azurerm_linux_function_app" "function_app" {
 
 
   app_settings = {
-    "WEBSITE_RUN_FROM_PACKAGE"       = "https://tfstatestgacc4565.blob.core.windows.net/mycode/az-funcs.zip",
+    # "WEBSITE_RUN_FROM_PACKAGE"       = "https://tfstatestgacc4565.blob.core.windows.net/mycode/az-funcs.zip",
     "FUNCTIONS_WORKER_RUNTIME"       = "node",
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.logging.instrumentation_key,
   }
