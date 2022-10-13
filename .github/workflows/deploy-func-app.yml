@@ -42,7 +42,6 @@ jobs:
         npm run test --if-present
         popd
         sudo apt-get install azure-functions-core-tools-4
-        cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }}
 
     - name: 'Run Azure Functions Action'
