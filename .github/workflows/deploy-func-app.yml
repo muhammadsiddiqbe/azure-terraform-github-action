@@ -45,7 +45,7 @@ jobs:
         npm run build --if-present
         npm run test --if-present
         pwd
-        func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --javascript
         pwd
 
     - name: 'Run Azure Functions Action'
