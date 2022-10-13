@@ -43,7 +43,7 @@ jobs:
         popd
         sudo apt-get install azure-functions-core-tools-4
         pwd
-        ls
+        cd './api'
         func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }}
 
     - name: 'Run Azure Functions Action'
