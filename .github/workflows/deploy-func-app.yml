@@ -31,13 +31,10 @@ jobs:
       run: |
         sudo apt-get install azure-functions-core-tools-4
         cd ./api
-        pwd
         npm install
         npm run build --if-present
         npm run test --if-present
-        pwd
         func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --javascript --debug
-        pwd
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
