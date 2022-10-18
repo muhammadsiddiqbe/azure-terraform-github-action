@@ -22,7 +22,7 @@ jobs:
       - name:  Terraform test
         run: |
           pwd
-          ls -
+          ls -a
           terraform -version
     # - name: Terraform Destroy
     #   run: |
