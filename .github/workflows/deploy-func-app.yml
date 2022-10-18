@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v3
 
@@ -29,13 +24,11 @@ jobs:
     - name: 'Resolve Project Dependencies Using Npm'
       shell: bash
       run: |
-        sudo apt-get install azure-functions-core-tools-4
-        cd ./api
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
         npm install
         npm run build --if-present
         npm run test --if-present
-        func azure functionapp publish ${{ env.AZURE_FUNCTIONAPP_NAME }} --javascript --debug
-
+        popd
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
