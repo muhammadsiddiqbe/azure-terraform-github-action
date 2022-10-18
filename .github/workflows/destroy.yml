@@ -19,14 +19,19 @@ jobs:
         shell: bash
 
     steps:
-    - name: Terraform Destroy
-      run: |
-        ls -a
-        pwd
-        TF_STRICT_MODE=false \
-        terraform destroy -auto-approve \
-        -var="prefix=${{ secrets.TF_VAR_PREFIX }}" \
-        -var="environment=${{ secrets.TF_VAR_ENVIRONMENT }}" \
-        -var="location=${{ secrets.TF_VAR_LOCATION }}" \
-        -var="psql_admin_login=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}" \
-        -var="psql_admin_password=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false \
+      - name:  Terraform test
+        run: |
+          pwd
+          ls -
+          terraform -version
+    # - name: Terraform Destroy
+    #   run: |
+    #     ls -a
+    #     pwd
+    #     TF_STRICT_MODE=false \
+    #     terraform destroy -auto-approve \
+    #     -var="prefix=${{ secrets.TF_VAR_PREFIX }}" \
+    #     -var="environment=${{ secrets.TF_VAR_ENVIRONMENT }}" \
+    #     -var="location=${{ secrets.TF_VAR_LOCATION }}" \
+    #     -var="psql_admin_login=${{ secrets.TF_VAR_PSQL_ADMIN_LOGIN }}" \
+    #     -var="psql_admin_password=${{ secrets.TF_VAR_PSQL_ADMIN_PASSWORD }}" -input=false \

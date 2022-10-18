@@ -1,7 +1,8 @@
 name: Deploy Node.js project to Azure Function App
 
 on:
-  [push, workflow_dispatch]
+  [workflow_dispatch]
+  # [push, workflow_dispatch]
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'main-func-app-4565'   # set this to your function app name on Azure
