@@ -92,50 +92,50 @@ module "PostgreSQL" {
   psql_admin_password = var.psql_admin_password
 }
 
-# module "VirtualMachines" {
-#   source = "./VirtualMachines"
+module "VirtualMachines" {
+  source = "./VirtualMachines"
 
-#   resource_group_name = module.ResourceGroups.rg_name_out
-#   location            = var.location
-#   prefix              = var.prefix
-#   vm_nic_id           = module.VirtualNetworks.vn_nic_id
-# }
+  resource_group_name = module.ResourceGroups.rg_name_out
+  location            = var.location
+  prefix              = var.prefix
+  vm_nic_id           = module.VirtualNetworks.vn_nic_id
+}
 
-# module "ServiceBus" {
-#   source = "./ServiceBus"
+module "ServiceBus" {
+  source = "./ServiceBus"
 
-#   prefix                  = var.prefix
-#   location                = var.location
-#   resource_group_name     = module.ResourceGroups.rg_name_out
-#   resource_group_location = module.ResourceGroups.rg_location_out
-# }
+  prefix                  = var.prefix
+  location                = var.location
+  resource_group_name     = module.ResourceGroups.rg_name_out
+  resource_group_location = module.ResourceGroups.rg_location_out
+}
 
-# module "AppService" {
-#   source = "./AppService/FunctionApp"
+module "AppService" {
+  source = "./AppService/FunctionApp"
 
-#   prefix      = var.prefix
-#   location    = var.location
-#   environment = var.environment
+  prefix      = var.prefix
+  location    = var.location
+  environment = var.environment
 
-#   resource_group_name             = module.ResourceGroups.rg_name_out
-#   resource_group_location         = module.ResourceGroups.rg_location_out
-#   linux_function_app_primary_name = "primary-func-app"
-#   storage_account_name            = module.StorageAccount.stg_acc_name_out
-#   storage_account_access_key      = module.StorageAccount.stg_acc_access_key_out
-# }
+  resource_group_name             = module.ResourceGroups.rg_name_out
+  resource_group_location         = module.ResourceGroups.rg_location_out
+  linux_function_app_primary_name = "primary-func-app"
+  storage_account_name            = module.StorageAccount.stg_acc_name_out
+  storage_account_access_key      = module.StorageAccount.stg_acc_access_key_out
+}
 
-# module "EventGrid" {
-#   source   = "./EventGrid"
-#   prefix   = var.prefix
-#   location = var.location
+module "EventGrid" {
+  source   = "./EventGrid"
+  prefix   = var.prefix
+  location = var.location
 
-#   resource_group_id           = module.ResourceGroups.resource_group_id_out
-#   resource_group_name         = module.ResourceGroups.rg_name_out
-#   queue_name                  = module.StorageAccount.stg_acc_queue_name_out
-#   storage_account_id          = module.StorageAccount.stg_acc_id_out
-#   storage_blob_container_name = module.StorageAccount.storage_blob_container_name_out
+  resource_group_id           = module.ResourceGroups.resource_group_id_out
+  resource_group_name         = module.ResourceGroups.rg_name_out
+  queue_name                  = module.StorageAccount.stg_acc_queue_name_out
+  storage_account_id          = module.StorageAccount.stg_acc_id_out
+  storage_blob_container_name = module.StorageAccount.storage_blob_container_name_out
 
-#   depends_on = [
-#     module.StorageAccount
-#   ]
-# }
+  depends_on = [
+    module.StorageAccount
+  ]
+}
