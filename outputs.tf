@@ -18,3 +18,7 @@ output "storage_account_access_key" {
   sensitive = true
   value     = module.StorageAccount.stg_acc_access_key_out
 }
+
+output "current_subscription_display_name" {
+  value = data.azurerm_subscription.current.display_name
+}
