@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "sample" {
-  name     = "${var.prefix}-sample-rg"
+  name     = "${var.prefix}-sample-rg4565"
   location = var.location
   tags = {
     sample = "azure-functions-event-grid-terraform"
@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "sample" {
 }
 
 resource "azurerm_eventgrid_topic" "sample_topic" {
-  name                = "${var.prefix}-azsam-egt"
+  name                = "${var.prefix}-azsam-egt4565"
   location            = var.location
   resource_group_name = var.resource_group_name
   tags = {
@@ -27,7 +27,7 @@ resource "azurerm_application_insights" "logging" {
 }
 
 resource "azurerm_storage_account" "inbox" {
-  name                      = "${var.prefix}inboxsa"
+  name                      = "${var.prefix}4565"
   resource_group_name       = var.resource_group_name
   location                  = var.location
   account_tier              = "Standard"

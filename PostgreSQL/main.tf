@@ -1,5 +1,5 @@
 resource "azurerm_postgresql_server" "primary" {
-  name                = var.base_name
+  name                = "${var.base_name}db4565"
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -20,7 +20,7 @@ resource "azurerm_postgresql_server" "primary" {
 }
 
 resource "azurerm_postgresql_database" "postgressql_db" {
-  name                = "${var.base_name}db"
+  name                = "${var.base_name}db4565"
   resource_group_name = var.resource_group_name
   server_name         = azurerm_postgresql_server.primary.name
   charset             = "UTF8"
